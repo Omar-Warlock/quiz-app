@@ -4,11 +4,9 @@ function QuestionTimer({ timeout, onTimeout }) {
   const [remainingTime, setRemainingTime] = useState(timeout);
 
   useEffect(() => {
+    console.log("SITTING TIMEOUT");
     const timer = setTimeout(() => {
       onTimeout();
-      console.log("timer set");
-
-      setRemainingTime(timeout);
     }, [timeout]);
     return () => {
       clearTimeout(timer);
@@ -16,6 +14,8 @@ function QuestionTimer({ timeout, onTimeout }) {
   }, [timeout, onTimeout]);
 
   useEffect(() => {
+    console.log("SITTING INTERVAL");
+
     const interval = setInterval(() => {
       setRemainingTime((prevTime) => {
         return prevTime - 100;
